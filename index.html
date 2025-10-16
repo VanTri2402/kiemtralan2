@@ -59,6 +59,7 @@
       }
 
       .product-image-container {
+        position: relative;
         width: 100%;
         height: 250px;
         overflow: hidden;
@@ -126,6 +127,45 @@
 
       .add-to-cart-btn:hover {
         background-color: #0b5ed7;
+      }
+
+      .card-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0; 
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .product-card:hover .card-overlay {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .hover-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .hover-icons img {
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        border-radius: 50%;
+        padding: 5px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+
+      .hover-icons img:hover {
+        transform: scale(1.15);
       }
     </style>
   </head>
@@ -200,10 +240,19 @@
               currency: "USD",
             }).format(product.price);
 
+            /* --- THAY ĐỔI 3: Thêm khối div.card-overlay vào HTML --- */
             const cardHTML = `
                 <div class="product-card">
                   <div class="product-image-container">
                     <img src="${product.imageUrl}" alt="${product.name}" class="product-image">
+                    
+                    <div class="card-overlay">
+                        <div class="hover-icons">
+                            <img src="https://icons.iconarchive.com/icons/hopstarter/button/128/Button-Add-icon.png" alt="Add">
+                            <img src="https://icons.iconarchive.com/icons/graphicloads/100-flat/128/cart-icon.png" alt="Cart">
+                            <img src="https://icons.iconarchive.com/icons/iconsmind/outline/128/Like-2-icon.png" alt="Like">
+                        </div>
+                    </div>
                   </div>
                   <div class="product-info">
                     <div class="product-header">
